@@ -1,0 +1,12 @@
+from SinglyLinkedList import SinglyLinkedList
+myList = SinglyLinkedList()
+myList.addFirst(5)
+myList.addFirst(2)
+myList.addFirst(9)
+myList.addFirst(7)
+myList.display()
+myList.addLast(15)
+myList.addLast(21)
+myList.addLast(17)
+myList.display()
+print(f"Number of nodes: {myList.countNodes()}")
