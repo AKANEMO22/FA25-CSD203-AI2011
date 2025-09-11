@@ -40,17 +40,88 @@ class SinglyLinkedList:
         return count
     
     def getValueAtPos(self, pos):
-        pass
-    
+        size=self.countNodes()
+        if (pos>=0 and pos<size):
+            count=0
+            cur=self.head
+            while (cur!=None):
+                if (count==pos):
+                    return cur.info
+                cur=cur.next
+                count += 1
+        else:
+            return -999
+
     def addNodeAtPos(self, x, pos):
-        pass
-    
+        size=self.countNodes()
+        if (pos>=0 and pos<=size):
+            if (pos==0):
+                self.addFirst(x)
+                return
+            if (pos==size):
+                self.addLast(x)
+                return
+            newNode=Node(x)
+            count=0
+            cur=self.head
+            while (cur!=None):
+                if (count+1==pos):                    
+                    newNode.next=cur.next
+                    cur.next=newNode
+                    return
+                cur=cur.next
+                count+=1
+        else:
+            print(f"{pos} is out of range")
+            
     def removeFirst(self):
-        pass
+        if (self.isEmpty()):
+            return
+        if (self.head.next is None):
+            self.head=self.tail=None
+            return
+        self.head=self.head.next
     
     def removeLast(self):
-        pass
+        if (self.isEmpty()):
+            return
+        if (self.head.next is None):
+            self.head=self.tail=None
+            return 
+        cur=self.head
+        while (cur.next.next is not None):	#Move cur to infront of tail
+            cur=cur.next
+        self.tail=cur
+        cur.next=None
     
     def removeNodeAtPos(self, pos):
+        size=self.countNodes()
+        if (pos>=0 and pos<size):
+            if (pos==0):
+                self.removeFirst()
+                return
+            if (pos==size-1):
+                self.removeLast()
+                return
+            count=0;
+            cur=self.head
+            while (cur is not None):
+                if (count+1==pos):
+                    cur.next=cur.next.next
+                    return
+                cur=cur.next
+                count += 1
+        else:
+             print(f"{pos} is out of range.")
+
+    def addPrevious(self, x, pos):
         pass
-        
+    
+    def addAfter(self, x, pos):
+        pass
+    
+    def removePrevious(self, pos):
+        pass
+
+    def removeAfter(self, pos):
+        pass 
