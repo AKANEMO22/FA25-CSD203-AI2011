@@ -113,9 +113,29 @@ class SinglyLinkedList:
                 count += 1
         else:
              print(f"{pos} is out of range.")
-
+    
+    def getValueAtFirst(self):
+        if (self.isEmpty()):
+            print("The list is empty")
+            return -999
+        else:
+            return self.head.info
+    
+    def getValueAtLast(self):
+        if (self.isEmpty()):
+            print("The list is empty")
+            return -999
+        else:
+            return self.tail.info
+    
     def addPrevious(self, x, pos):
-        pass
+        if (pos==0 or self.isEmpty()):
+            self.addFirst(x)
+            return
+        size=self.countNodes()
+        if (pos<0 or pos>size+1):
+            return
+        self.addNodeAtPos(x, pos-1)            
     
     def addAfter(self, x, pos):
         pass
@@ -124,4 +144,87 @@ class SinglyLinkedList:
         pass
 
     def removeAfter(self, pos):
-        pass 
+        pass
+    
+    def getMaxValue(self):
+        max=self.head.info
+        cur=self.head
+        while (cur is not None):
+            if cur.info>max:
+                max=cur.info
+            cur=cur.next
+        return max
+    
+    def getMinValue(self):
+        min=self.head.info
+        cur=self.head
+        while (cur is not None):
+            if cur.info<min:
+                min=cur.info
+            cur=cur.next
+        return min        
+        pass
+    
+    def getPosOfMaxTheK(self, k):
+        max=self.getMaxValue()
+        count=1; i=1; pos=-1
+        cur=self.head
+        while (cur is not None):
+            if (cur.info==max):
+                if (i==k):
+                    pos=count
+                    break
+                else:
+                    i+=1
+            cur=cur.next
+            count+=1
+        return pos
+    
+    def getPosOfMinTheK(self, k):
+        min=self.getMinValue()
+        count=1; i=1; pos=-1
+        cur=self.head
+        while (cur is not None):
+            if (cur.info==min):
+                if (i==k):
+                    pos=count
+                    break
+                else:
+                    i+=1
+            cur=cur.next
+            count+=1
+        return pos
+        pass
+    #Bubble sort
+    def SortListAsc(self):
+        cur=self.head
+        while cur.next:
+            p=cur.next
+            while p:
+                if cur.info>p.info:		#switch ASC <=> DESC
+                    temp=cur.info; cur.info=p.info; p.info=temp
+                p=p.next
+            cur=cur.next            
+    
+    def SortListDesc(self):
+        cur=self.head
+        while cur.next:
+            p=cur.next
+            while p:
+                if cur.info<p.info:		#switch ASC <=> DESC
+                    temp=cur.info; cur.info=p.info; p.info=temp
+                p=p.next
+            cur=cur.next
+            
+    #Return position of node(x).
+    #Return -1 in case find not found
+    def getPosOfNode(self, x):
+        pass
+    
+    def SortListAscPos1toPos2(self,pos1,pos2):
+        pass
+    
+    def removeAllNode(self, x):
+        pass
+    
+    
