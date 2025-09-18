@@ -204,8 +204,19 @@ class SinglyLinkedList:
                 if cur.info>p.info:		#switch ASC <=> DESC
                     temp=cur.info; cur.info=p.info; p.info=temp
                 p=p.next
-            cur=cur.next            
-    
+            cur=cur.next
+            
+    def SortListAsc2(self):
+        n=self.countNodes()
+        cur=self.head
+        for i in range (n):
+            q=cur.next
+            for j in range (i,n):
+                if cur.info > q.info:
+                    temp=cur.info; cur.info=q.info; q.info=temp
+                q=q.next
+            cur=cur.next
+            
     def SortListDesc(self):
         cur=self.head
         while cur.next:
@@ -216,15 +227,44 @@ class SinglyLinkedList:
                 p=p.next
             cur=cur.next
             
-    #Return position of node(x).
+    #Return the first position of node(x).
     #Return -1 in case find not found
-    def getPosOfNode(self, x):
-        pass
+    def getFirstPosOfNode(self, x):
+        pos=-1
+        i=0
+        cur = self.head
+        while cur:
+           if (cur.info==x):
+               pos=i
+               break
+           i+=1
+           cur=cur.next
+        return pos       
     
     def SortListAscPos1toPos2(self,pos1,pos2):
-        pass
+        i=0; j=0
+        cur=self.head
+        while (i<pos1):		#Move cur and i to pos1
+            cur=cur.next
+            i+=1              
+        while cur.next and i<pos2-1:
+            p=cur.next
+            j=i+1
+            while p is not None and j<pos2:
+                if cur.info>p.info:		#switch ASC <=> DESC
+                    temp=cur.info; cur.info=p.info; p.info=temp
+                p=p.next
+                j+=1
+            cur=cur.next
+            i+=1
     
     def removeAllNode(self, x):
-        pass
-    
-    
+        cur=self.head
+        while cur.next:
+            if cur.next.info==x:
+                cur.next=cur.next.next
+            else:
+                cur=cur.next
+        if self.head.info==x:
+            self.removeFirst()
+            
