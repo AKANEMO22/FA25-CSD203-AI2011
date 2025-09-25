@@ -98,7 +98,7 @@ class DoubleLinkedList:
             i+=1        
         cur.prev.next=cur.next
         cur.next.prev=cur.prev        
-        
+#     Bubble sort    
     def sortListAsc(self):
         cur=self.head
         while cur.next:
@@ -111,6 +111,14 @@ class DoubleLinkedList:
         pass
     
     def sortListDesc(self):
+        cur=self.head
+        while cur.next:
+            q=cur.next
+            while q:
+                if cur.info<q.info:		#Sort ASC <=> DESC by changing > to < 
+                    t=cur.info; cur.info=q.info; q.info=t
+                q=q.next
+            cur=cur.next        
         pass
     
     def editNodeAtPos(self, x, pos):
