@@ -7,7 +7,18 @@ def Dec2Bin(x):
         x=int(x/2)
     while not myStack.isEmpty():
         print(myStack.pop(),end='')
-        
-x=int(input("Input number to convert to Binary: "))
-Dec2Bin(x)      
+
+def reverseString(str):
+    myStack=Stack()
+    for s in str:
+        myStack.push(s)
+    rs = ""
+    while not myStack.isEmpty():
+        rs += myStack.pop()
+    return rs    
+    
+# x=int(input("Input number to convert to Binary: "))
+# Dec2Bin(x)
+str=input("Input a string to reverse: ")
+print(reverseString(str))        
         
