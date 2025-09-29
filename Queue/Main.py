@@ -1,0 +1,13 @@
+from Queue import Queue
+myQ = Queue()
+myQ.enqueue(5)
+myQ.enqueue(7)
+myQ.enqueue(2)
+myQ.enqueue(3)
+myQ.enqueue(9)
+myQ.enqueue(4)
+print("The first value of queue is: ", myQ.first())
+x = myQ.dequeue()
+print(x, end=' ')
+print("\nThe first value of queue is: ", myQ.first())
+print("Number of elements in queue: ", myQ.len())
