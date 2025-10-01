@@ -17,8 +17,8 @@ def reverseString(str):
         rs += myStack.pop()
     return rs    
     
-# x=int(input("Input number to convert to Binary: "))
-# Dec2Bin(x)
-str=input("Input a string to reverse: ")
-print(reverseString(str))        
+x=int(input("Input number to convert to Binary: "))
+Dec2Bin(x)
+#str=input("Input a string to reverse: ")
+#print(reverseString(str))        
         
