@@ -1,3 +1,4 @@
+from Queue import Queue
 from Node import Node
 class BSTree:
     def __init__(self, root=None):
@@ -55,4 +56,76 @@ class BSTree:
             self.postOrder(root.left)        
         if root.right is not None:
             self.postOrder(root.right)
-        print(root.info,end=' ')	#Visit root    
+        print(root.info,end=' ')	#Visit root
+        
+    def visit(self, v):
+        if v is None:
+            return
+        print(v.info,end=' ')
+        
+    def breadth_first_traversal(self):
+        if self.isEmpty():
+            return
+        myQ=Queue()
+        myQ.enqueue(self.root)
+        while not myQ.isEmpty():
+            p=myQ.dequeue()
+            self.visit(p)
+            if p.left is not None:
+                myQ.enqueue(p.left)
+            if p.right is not None:
+                myQ.enqueue(p.right)
+              
+    def countNodeHasTwoChildren(self):
+        if self.isEmpty():
+            return 0
+        count=0
+        myQ=Queue()
+        myQ.enqueue(self.root)
+        while not myQ.isEmpty():
+            p=myQ.dequeue()
+            if p.left is not None and p.right is not None:
+                count+=1
+            if p.left is not None:
+                myQ.enqueue(p.left)
+            if p.right is not None:
+                myQ.enqueue(p.right)
+        return count
+    
+    def countNodesHasOnlyLeftChild(self, root):
+        if root is None:
+            return 0
+        count=l=r= 0
+        if root.left is not None:
+            l=self.countNodesHasOnlyLeftChild(root.left)
+        if root.left is not None and root.right is None:            
+            count+=1
+        if root.right is not None:
+            r=self.countNodesHasOnlyLeftChild(root.right)        
+        return l+count+r
+    
+    def countNodesHasOnlyRightChild(self, root):
+        if root is None:
+            return 0
+        count=l=r= 0
+        if root.left is not None:
+            l=self.countNodesHasOnlyRightChild(root.left)
+        if root.left is None and root.right is not None:            
+            count+=1
+        if root.right is not None:
+            r=self.countNodesHasOnlyRightChild(root.right)        
+        return l+count+r
+    
+    def countNodesWithValueGreaterThanX(self, root, x):
+        if root is None:
+            return 0
+        count=l=r= 0
+        if root.left is not None:
+            l=self.countNodesWithValueGreaterThanX(root.left, x)
+        if root.info>x:        
+            count+=1
+        if root.right is not None:
+            r=self.countNodesWithValueGreaterThanX(root.right, x)        
+        return l+count+r        
+        pass
+    
