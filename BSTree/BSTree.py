@@ -129,3 +129,62 @@ class BSTree:
         return l+count+r        
         pass
     
+    #Find the minimum of the right subtree
+    def findLeftMostNode(self, root):
+        if root is None:
+            return None
+        p=self.root.right
+        while p.left:
+            p=p.left
+        return p    
+   
+    #Find the maximum of the left subtree
+    def findRightMostNode(self, root):
+        if root is None:
+            return None
+        p=self.root.left
+        while p.right:
+            p=p.right
+        return p        
+    
+    def deleteByCopyingLeft(self, root, x):
+        if root is None:
+            print(f"Find not found {x}")
+            return
+        if x<root.info:
+            root.left=self.deleteByCopyingLeft(root.left,x)
+        elif x>root.info:
+            root.right=self.deleteByCopyingLeft(root.right,x)
+        else:
+            #Only has a right child
+            if root.left is None:
+                return root.right
+            #Only has a left child
+            if root.right is None:
+                return root.left
+            nodeCopy=self.findRightMostNode(self.root)
+            root.info=nodeCopy.info
+            root.left=self.deleteByCopyingLeft(root.left, nodeCopy.info)
+            return root.left
+        return root
+            
+    def deleteByCopyingRight(self, root, x):
+        if root is None:
+            print(f"Find not found {x}")
+            return
+        if x<root.info:
+            root.left=self.deleteByCopyingRight(root.left,x)
+        elif x>root.info:
+            root.right=self.deleteByCopyingRight(root.right,x)
+        else:
+            #Only has a right child
+            if root.left is None:
+                return root.right
+            #Only has a left child
+            if root.right is None:
+                return root.left
+            nodeCopy=self.findLeftMostNode(self.root)
+            root.info=nodeCopy.info
+            root.right=self.deleteByCopyingRight(root.right, nodeCopy.info)
+            return root.right
+        return root
