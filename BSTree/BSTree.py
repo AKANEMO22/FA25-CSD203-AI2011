@@ -131,7 +131,7 @@ class BSTree:
     
     #Find the minimum of the right subtree
     def findLeftMostNode(self, node):
-        if self.root is None:
+        if node is None:
             return None
         p=node.right
         while p.left:
@@ -189,3 +189,26 @@ class BSTree:
             node.info=nodeCopy.info
             node.right=self.deleteByCopyingRight(node.right, nodeCopy.info)            
         return node
+    
+    #Delete by merging
+    def deleteByMerging(self, node, x):
+        if node is None:
+            print(f"Find not found {x}")
+            return
+        if x<node.info:
+            node.left=self.deleteByMerging(node.left,x)
+        elif x>node.info:
+            node.right=self.deleteByMerging(node.right,x)
+        else:
+            #Only has a right child
+            if node.left is None:
+                return node.right
+            #Only has a left child
+            if node.right is None:
+                return node.left        
+            merNode = self.findRightMostNode(node)
+            merNode.right=node.right
+            return node.left
+        return node
+        
+        
