@@ -130,61 +130,62 @@ class BSTree:
         pass
     
     #Find the minimum of the right subtree
-    def findLeftMostNode(self, root):
-        if root is None:
+    def findLeftMostNode(self, node):
+        if self.root is None:
             return None
-        p=self.root.right
+        p=node.right
         while p.left:
             p=p.left
         return p    
    
     #Find the maximum of the left subtree
-    def findRightMostNode(self, root):
-        if root is None:
+    def findRightMostNode(self, node):
+        if node is None:
             return None
-        p=self.root.left
+        p=node.left
         while p.right:
             p=p.right
         return p        
     
     #Find the copy node at the left subtree
-    def deleteByCopyingLeft(self, root, x):
-        if root is None:
+    def deleteByCopyingLeft(self, node, x):
+        if node is None:
             print(f"Find not found {x}")
             return
-        if x<root.info:
-            root.left=self.deleteByCopyingLeft(root.left,x)
-        elif x>root.info:
-            root.right=self.deleteByCopyingLeft(root.right,x)
+        if x<node.info:
+            node.left=self.deleteByCopyingLeft(node.left,x)
+        elif x>node.info:
+            node.right=self.deleteByCopyingLeft(node.right,x)
         else:
             #Only has a right child
-            if root.left is None:
-                return root.right
+            if node.left is None:
+                return node.right
             #Only has a left child
-            if root.right is None:
-                return root.left
-            nodeCopy=self.findRightMostNode(self.root)
-            root.info=nodeCopy.info
-            root.left=self.deleteByCopyingLeft(root.left, nodeCopy.info)            
-        return root
+            if node.right is None:
+                return node.left
+            nodeCopy=self.findRightMostNode(node)
+            node.info=nodeCopy.info
+            node.left=self.deleteByCopyingLeft(node.left, nodeCopy.info)            
+        return node
      
      #Find the copy node at the right subtree 
-    def deleteByCopyingRight(self, root, x):
-        if root is None:
+    #Find the copy node at the left subtree
+    def deleteByCopyingRight(self, node, x):
+        if node is None:
             print(f"Find not found {x}")
             return
-        if x<root.info:
-            root.left=self.deleteByCopyingRight(root.left,x)
-        elif x>root.info:
-            root.right=self.deleteByCopyingRight(root.right,x)
+        if x<node.info:
+            node.left=self.deleteByCopyingRight(node.left,x)
+        elif x>node.info:
+            node.right=self.deleteByCopyingRight(node.right,x)
         else:
             #Only has a right child
-            if root.left is None:
-                return root.right
+            if node.left is None:
+                return node.right
             #Only has a left child
-            if root.right is None:
-                return root.left
-            nodeCopy=self.findLeftMostNode(self.root)
-            root.info=nodeCopy.info
-            root.right=self.deleteByCopyingRight(root.right, nodeCopy.info)
-        return root
+            if node.right is None:
+                return node.left
+            nodeCopy=self.findLeftMostNode(node)
+            node.info=nodeCopy.info
+            node.right=self.deleteByCopyingRight(node.right, nodeCopy.info)            
+        return node
