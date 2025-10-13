@@ -147,6 +147,7 @@ class BSTree:
             p=p.right
         return p        
     
+    #Find the copy node at the left subtree
     def deleteByCopyingLeft(self, root, x):
         if root is None:
             print(f"Find not found {x}")
@@ -164,10 +165,10 @@ class BSTree:
                 return root.left
             nodeCopy=self.findRightMostNode(self.root)
             root.info=nodeCopy.info
-            root.left=self.deleteByCopyingLeft(root.left, nodeCopy.info)
-            return root.left
+            root.left=self.deleteByCopyingLeft(root.left, nodeCopy.info)            
         return root
-            
+     
+     #Find the copy node at the right subtree 
     def deleteByCopyingRight(self, root, x):
         if root is None:
             print(f"Find not found {x}")
@@ -186,5 +187,4 @@ class BSTree:
             nodeCopy=self.findLeftMostNode(self.root)
             root.info=nodeCopy.info
             root.right=self.deleteByCopyingRight(root.right, nodeCopy.info)
-            return root.right
         return root
