@@ -210,5 +210,45 @@ class BSTree:
             merNode.right=node.right
             return node.left
         return node
-        
+    
+    #Delete all external node
+    def deleteAllLeafNode(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is None:
+            return None
+        node.left=self.deleteAllLeafNode(node.left)
+        node.right=self.deleteAllLeafNode(node.right)
+        return node
+    
+    def deleteAllNodeJustHasLeftChild(self, node):
+        if node is None:
+            return
+        if node.left is not None and node.right is None:
+            return node.left
+        node.left=self.deleteAllNodeJustHasLeftChild(node.left)
+        node.right=self.deleteAllNodeJustHasLeftChild(node.right)
+        return node
+    
+    def deleteAllNodeJustHasRightChild(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is not None:
+            return node.right
+        node.left=self.deleteAllNodeJustHasRightChild(node.left)
+        node.right=self.deleteAllNodeJustHasRightChild(node.right)
+        return node
+    
+    def deleteNodeValueInRange(self, node, x ,y):
+        if node is None:
+            return     
+        if node.left is not None:        
+            node.left=self.deleteNodeValueInRange(node.left, x, y)
+        if node.right is not None:    
+            node.right=self.deleteNodeValueInRange(node.right, x, y)
+        if x<=node.info<=y:
+            node=self.deleteByCopyingLeft(node, node.info)               
+        return node
+    
+    
         
