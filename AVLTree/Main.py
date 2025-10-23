@@ -12,3 +12,10 @@ myAVL.root=myAVL.addAVLNode(myAVL.root, 54)
 
 # myAVL.inOrder(myAVL.root)
 myAVL.breadth_first_traversal()
+print()
+myAVL.root=myAVL.deleteByCopyingLeft(myAVL.root,62)
+myAVL.root=myAVL.deleteByCopyingLeft(myAVL.root,54)
+myAVL.root=myAVL.deleteByCopyingLeft(myAVL.root,50)
+myAVL.breadth_first_traversal()
+# 44 17 78 32 50 88 48 62
+# 44 17 62 32 50 78 48 54 88 
