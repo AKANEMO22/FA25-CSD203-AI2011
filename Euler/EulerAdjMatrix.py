@@ -1,8 +1,5 @@
 from collections import defaultdict
 
-# ================================
-#   CLASS EULER (SU DUNG DANH SACH KE)
-# ================================
 class Euler:
     def __init__(self, V):
         self.V = V
@@ -88,10 +85,6 @@ class Euler:
 
         return path
 
-
-# ================================
-#   DOC MA TRAN KE TRUC TIEP
-# ================================
 def read_graph_from_adj_matrix(filename):
     with open(filename, "r") as f:
         lines = f.read().strip().splitlines()
@@ -115,10 +108,6 @@ def read_graph_from_adj_matrix(filename):
 
     return g
 
-
-# ================================
-#   MAIN
-# ================================
 if __name__ == "__main__":
     filename = "EulerInputMatrix.txt"
     graph = read_graph_from_adj_matrix(filename)

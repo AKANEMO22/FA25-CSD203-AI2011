@@ -9,6 +9,9 @@ def read_graph_from_file(filename):
         for line in lines[1:1+n]:
             row = list(map(int, line.split()))
             graph.append(row)
+#         for i in range (n):		#Doi xung qua duong cheo chinh
+#             for j in range (n):
+#                 graph[j][i]=graph[i][j]
 
     return graph
 
@@ -42,16 +45,20 @@ def reconstruct_path(previous, target):
         target = previous[target]
     return path
 
-# filename = "dijkstraInput.txt"
-filename = input("Input file name e.g (dijkstraInput.txt): ")
+filename = "dijkstraInput.txt"
+# filename = input("Input file name e.g (dijkstraInput.txt): ")
 graph = read_graph_from_file(filename)
-
+for i in graph:
+    print(i, end=' ')
+    print()
 # tao ten cac dinh: a, b, c, ...
-vertices = [chr(ord('A') + i) for i in range(len(graph))]
+vertices = [chr(ord('0') + i) for i in range(len(graph))]
 
-start_vertex = 1  # bat dau tu dinh 'a'
+start_vertex = 0  # bat dau tu dinh 'a'
 
 distances, previous = dijkstra(graph, start_vertex)
+
+
 
 print(f"Duong di ngan nhat tu dinh '{vertices[start_vertex]}' den cac dinh:")
 for i in range(len(vertices)):
